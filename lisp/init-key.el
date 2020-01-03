@@ -14,5 +14,14 @@
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-		
+
+;; git find file
+(global-set-key (kbd "C-c f") 'counsel-git)
+
+;; 全局buffer缩进
+(global-set-key (kbd "C-M-z") 'indent-region-or-buffer)
+
+;; hippie补全
+(global-set-key (kbd "s-/") 'hippie-expand)
+
 (provide 'init-key)

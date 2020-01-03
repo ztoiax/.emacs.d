@@ -62,6 +62,8 @@
 ;; config smartparens
 ;; (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
 (smartparens-global-mode t)
+;; 取消单引号成双打印
+(sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)
 
 ;; config popwin
 (require 'popwin)
