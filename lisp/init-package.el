@@ -25,6 +25,10 @@
                 monokai-theme
                 ;; solarized-theme
 		popwin
+		;; hippie-expand-slime
+		iedit
+	        expand-region
+		helm-ag
                 ) "Default packages")
 
  (setq package-selected-packages my/packages)

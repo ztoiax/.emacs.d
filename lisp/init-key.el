@@ -24,4 +24,24 @@
 ;; hippie补全
 (global-set-key (kbd "s-/") 'hippie-expand)
 
+;; occur
+(global-set-key (kbd "C-M-o") 'occur-dwim)
+
+;; iedit编辑多区域
+(global-set-key (kbd "C-M-e") 'iedit-mode)
+
+;;expand-region
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+;; mysetting
+(global-set-key (kbd "C-M-n") 'next-line10)
+(global-set-key (kbd "C-M-p") 'previous-line10)
+
+(global-set-key (kbd "C-M-w") 'select-current-word)
+(global-set-key (kbd "C-.") 'select-current-line)
+(global-set-key (kbd "C-' d") 'delete-enclsed-text)
+
+(global-set-key (kbd "C-' t") 'google-translate)
+
+
 (provide 'init-key)
