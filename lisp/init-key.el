@@ -50,6 +50,10 @@
 (global-set-key (kbd "H-w") #'aya-create)
 (global-set-key (kbd "H-y") #'aya-expand)
 
+;; neotree
+
+(global-set-key (kbd "C-M-n") #'neotree-toggle)
+
 ;; mysetting
 (global-set-key (kbd "C-M-n") 'next-line10)
 (global-set-key (kbd "C-M-p") 'previous-line10)
