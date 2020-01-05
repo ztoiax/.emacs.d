@@ -9,7 +9,7 @@
 ;; (setq recentf-max-menu-item 10)
 ;; 这个快捷键绑定可以用之后的插件 counsel 代替
 ;; (global-set-key (kbd "C-x C-r") 'recentf-open-files)
- 
+
 ;; 取消文件备份
 (setq make-backup-files nil)
 
@@ -67,6 +67,9 @@
         regexp-history)
   (call-interactively 'occur))
 
+;; yasnippet
+(yas-reload-all)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
 
 ;; mysetting
 (defun next-line10()
@@ -109,9 +112,21 @@
 
 
 (defun google-translate ()
-"Look up the word under cursor in a browser."
- (interactive)
- (browse-url
-  (concat "https://translate.google.cn/?source=osdd#auto|auto|" (thing-at-point 'symbol))))
+  "Look up the word under cursor in a browser."
+  (interactive)
+  (browse-url
+   (concat "https://translate.google.cn/?source=osdd#auto|auto|" (thing-at-point 'symbol))))
+
+(defun surround-word (x)
+  "Select the word under cursor.
+“word” here is considered any alphanumeric sequence with “_” or “-”."
+  (interactive "sEnter your symbol")
+  (let (p1))
+  (setq p1 (point))
+  (skip-chars-backward "-_A-Za-z0-9")
+  (insert x)
+  (skip-chars-forward "-_A-Za-z0-9")
+  (insert x)
+  (goto-char (+ 1 p1)))
 
 (provide 'init-better-set)

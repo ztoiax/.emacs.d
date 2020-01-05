@@ -1,13 +1,6 @@
 ;; 这一行代码，将函数 open-init-file 绑定到 <f10>
 (global-set-key (kbd "<f10>") 'open-init-file)
 
-;; company C-n C-p选择补全
-(with-eval-after-load 'company
-  (define-key company-active-map (kbd "M-n") nil)
-  (define-key company-active-map (kbd "M-p") nil)
-  (define-key company-active-map (kbd "C-n") #'company-select-next)
-  (define-key company-active-map (kbd "C-p") #'company-select-previous))
-
 ;; smartparens
 (global-set-key (kbd "C-h C-f") 'find-function)
 (global-set-key (kbd "C-h C-v") 'find-variable)
@@ -32,7 +25,7 @@
 (global-set-key (kbd "s-/") 'hippie-expand)
 
 ;; occur
-(global-set-key (kbd "C-M-o") 'occur-dwim)
+aaieeee(global-set-key (kbd "C-M-o") 'occur-dwim)
 
 ;; iedit编辑多区域
 (global-set-key (kbd "C-M-i") 'iedit-mode)
@@ -43,8 +36,7 @@
 ;; ag
 (global-set-key (kbd "C-c a") 'helm-do-ag-project-root)
 
-;;switch-buffer
-(global-set-key (kbd "C-x C-b") 'ivy-switch-buffer)
+
 
 ;; auto-yasnippet
 (global-set-key (kbd "H-w") #'aya-create)
@@ -59,8 +51,6 @@
 (global-set-key (kbd "C-' C-d") 'delete-enclsed-text)
 
 (global-set-key (kbd "C-' C-t") 'google-translate)
-
-(global-set-key (kbd "C-M-y") 'surround-word)
 
 
 (provide 'init-key)
