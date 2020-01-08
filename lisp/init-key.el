@@ -1,6 +1,6 @@
 ;; 这一行代码，将函数 open-init-file 绑定到 <f10>
 (global-set-key (kbd "<f10>") 'open-init-file)
-
+(global-set-key (kbd "<escape>") 'keyboard-quit)
 ;; company C-n C-p选择补全
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "M-n") nil)
@@ -34,25 +34,43 @@
 ;; occur
 (global-set-key (kbd "C-M-o") 'occur-dwim)
 
-;; iedit编辑多区域
-(global-set-key (kbd "C-M-i") 'iedit-mode)
-
 ;; expand-region
 (global-set-key (kbd "C-=") 'er/expand-region)
-
-;; ag
-(global-set-key (kbd "C-c a") 'helm-do-ag-project-root)
-
-;;switch-buffer
-(global-set-key (kbd "C-x C-b") 'ivy-switch-buffer)
 
 ;; auto-yasnippet
 (global-set-key (kbd "H-w") #'aya-create)
 (global-set-key (kbd "H-y") #'aya-expand)
 
-;; neotree
 
-(global-set-key (kbd "C-M-n") #'neotree-toggle)
+;; evil
+(define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
+
+;;evil-leader
+(evil-leader/set-key
+ "ff" 'find-file
+ "bb" 'switch-to-buffer
+ "0"  'select-windo
+ "1"  'select-window-1
+ "2"  'select-window-2
+ "3"  'select-window-3
+ "bn" 'other-window
+ "e"  'eval-last-sexp
+ "u"  'universal-argument
+ "ww" 'save-buffer
+ "wl" 'split-window-right
+ "wj" 'split-window-below
+ "wd" 'delete-other-windows
+ ;; neotree
+ "t"  'neotree-toggle
+ ;; iedit编辑多区域
+ "i"  'iedit-mode 
+ ;; ag
+ "ag" 'helm-do-ag-project-root
+ )
+
+;; evil-nerd-commenter注释
+(define-key evil-normal-state-map (kbd "gcc") 'evilnc-comment-or-uncomment-lines)
+(define-key evil-visual-state-map (kbd "gcc") 'evilnc-comment-or-uncomment-lines)
 
 ;; mysetting
 (global-set-key (kbd "C-M-n") 'next-line10)
@@ -65,6 +83,4 @@
 (global-set-key (kbd "C-' C-t") 'google-translate)
 
 (global-set-key (kbd "C-M-y") 'surround-word)
-
-
 (provide 'init-key)

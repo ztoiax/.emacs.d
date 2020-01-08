@@ -1,13 +1,11 @@
  (when (>= emacs-major-version 24)
     (require 'package)
-    (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                             ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))))
-     ;; (add-to-list 'package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                        ;; ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))t))
-     ;; (add-to-list 'package-archives '("melpa" . "http://elpa.emacs-china.org/melpa/") t))
-;;	(setq package-archives '(("popkit" . "http://elpa.popkit.org/packages/"))))
+    ;;(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                             ;;("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))))
+     (add-to-list 'package-archives '("melpa" . "http://elpa.emacs-china.org/melpa/") t))
+    ;;(setq package-archives '("melpa"   . "http://mirrors.zilongshanren.com/melpa/")))
      (package-initialize) 
-;; 注意 elpa.emacs-china.org 是Emacs China 中文社区在国内搭建的一个 ELPA 镜像
+
 ;; Add Packages
  (defvar my/packages '(
                 ;; --- Auto-completion ---
@@ -34,6 +32,8 @@
 	        ;;evil
 		auto-yasnippet
 		neotree
+		use-package
+		;evil-leader
                 ) "Default packages")
 
  (setq package-selected-packages my/packages)
@@ -80,4 +80,17 @@
 
 ;; evil
 (evil-mode 1)
+
+;; evil-leader
+(global-evil-leader-mode)
+
+;; evil-surround
+(global-evil-surround-mode)
+
+;; evil-nerd-commenter
+(evilnc-default-hotkeys)
+
+;; which-key
+(which-key-mode)
+
 (provide 'init-package)
