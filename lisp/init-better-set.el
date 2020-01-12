@@ -1,3 +1,6 @@
+;; mode
+(winner-mode t)
+(winum-mode t)
 ;; 快速打开配置文件
 (defun open-init-file()
   (interactive)
@@ -128,5 +131,122 @@
   (skip-chars-forward "-_A-Za-z0-9")
   (insert x)
   (goto-char (+ 1 p1)))
+
+;; chen
+;; ,w2
+(defun my-split-window-horizontally (&optional ratio)
+  "Split window horizontally and resize the new window.
+'C-u number M-x my-split-window-horizontally' uses pre-defined
+ratio from `my-ratio-dict'.
+Always focus on bigger window."
+  (interactive "P")
+  (let* (ratio-val)
+    (cond
+     (ratio
+      (setq ratio-val (cdr (assoc ratio my-ratio-dict)))
+      (split-window-horizontally (floor (/ (window-body-width)
+                                           (1+ ratio-val)))))
+     (t
+      (split-window-horizontally)))
+    (set-window-buffer (next-window) (current-buffer))
+    (if (or (not ratio-val)
+            (>= ratio-val 1))
+        (windmove-right))))
+;; ,w3
+(defun my-split-window-vertically (&optional ratio)
+  "Split window vertically and resize the new window.
+'C-u number M-x my-split-window-vertically' uses pre-defined
+ratio from `my-ratio-dict'.
+Always focus on bigger window."
+  (interactive "P")
+  (let* (ratio-val)
+    (cond
+     (ratio
+      (setq ratio-val (cdr (assoc ratio my-ratio-dict)))
+      (split-window-vertically (floor (/ (window-body-height)
+                                         (1+ ratio-val)))))
+     (t
+      (split-window-vertically)))
+    ;; open another window with current-buffer
+    (set-window-buffer (next-window) (current-buffer))
+    ;; move focus if new window bigger than current one
+    (if (or (not ratio-val)
+            (>= ratio-val 1))
+        (windmove-down))))
+;; ,sh
+(defun my-switch-to-shell ()
+  "Switch to built in or 3rd party shell."
+  (interactive)
+  (cond
+   ((display-graphic-p)
+    (switch-to-builtin-shell))
+   (t
+    (suspend-frame))))
+
+;; ,fr
+(defun my-counsel-recentf (&optional n)
+  "Find a file on `recentf-list'.
+If N is not nil, only list files in current project."
+  (interactive "P")
+  (unless (featurep 'recentf) (require 'recentf))
+  (recentf-mode 1)
+  (let* ((files (mapcar #'substring-no-properties recentf-list))
+         (root-dir (if (ffip-project-root) (file-truename (ffip-project-root)))))
+    (when (and n root-dir)
+      (setq files (delq nil (mapcar (lambda (f) (path-in-directory-p f root-dir)) files))))
+    (ivy-read "Recentf: "
+              files
+              :initial-input (if (region-active-p) (my-selected-str))
+              :action (lambda (f)
+                        (with-ivy-window
+                          (find-file f)))
+              :caller 'counsel-recentf)))
+
+;; ,fd
+(defvar my-dired-directory-history nil "Recent directories accessed by dired.")
+
+(defun counsel-recent-directory (&optional n)
+  "Goto recent directories.
+If N is not nil, only list directories in current project."
+  (interactive "P")
+  (unless recentf-mode (recentf-mode 1))
+  (let* ((cands (delete-dups
+                 (append my-dired-directory-history
+                         (mapcar 'file-name-directory recentf-list)
+                         ;; fasd history
+                         (if (executable-find "fasd")
+                             (nonempty-lines (shell-command-to-string "fasd -ld"))))))
+         (root-dir (if (ffip-project-root) (file-truename (ffip-project-root)))))
+    (when (and n root-dir)
+      (setq cands (delq nil (mapcar (lambda (f) (path-in-directory-p f root-dir)) cands))))
+    (ivy-read "directories:" cands :action 'dired)))
+
+;; ,rt
+
+(defun pickup-random-color-theme (themes)
+  "Pickup random color theme from themes."
+  (unless (featurep 'counsel) (require 'counsel))
+  (let* ((available-themes (mapcar 'symbol-name themes))
+         (theme (nth (random (length available-themes)) available-themes)))
+    (counsel-load-theme-action theme)
+    (message "Color theme [%s] loaded." theme)))
+
+(defun random-color-theme ()
+  "Random color theme."
+  (interactive)
+  (pickup-random-color-theme (custom-available-themes)))
+
+(defun random-healthy-color-theme (join-dark-side)
+  "Random healthy color theme.
+When join-dark-side is t, pick up dark theme only."
+  (interactive "P")
+  (let* (themes
+         (hour (string-to-number (format-time-string "%H" (current-time))))
+         (prefer-light-p (and (not join-dark-side) (>= hour 9) (<= hour 19)) ))
+    (dolist (theme (custom-available-themes))
+      (let* ((light-theme-p (string-match-p "-light" (symbol-name theme))))
+        (when (if prefer-light-p light-theme-p (not light-theme-p))
+          (push theme themes))))
+  (pickup-random-color-theme themes)))
 
 (provide 'init-better-set)

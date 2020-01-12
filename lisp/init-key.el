@@ -22,9 +22,6 @@
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
 
-;; git find file
-(global-set-key (kbd "C-c f") 'counsel-git)
-
 ;; 全局buffer缩进
 (global-set-key (kbd "C-M-z") 'indent-region-or-buffer)
 
@@ -47,25 +44,69 @@
 
 ;;evil-leader
 (evil-leader/set-key
- "ff" 'find-file
- "bb" 'switch-to-buffer
- "0"  'select-windo
- "1"  'select-window-1
- "2"  'select-window-2
- "3"  'select-window-3
- "bn" 'other-window
- "e"  'eval-last-sexp
- "u"  'universal-argument
- "ww" 'save-buffer
- "wl" 'split-window-right
- "wj" 'split-window-below
- "wd" 'delete-other-windows
- ;; neotree
- "t"  'neotree-toggle
- ;; iedit编辑多区域
- "i"  'iedit-mode 
- ;; ag
- "ag" 'helm-do-ag-project-root
+  ;;window
+  "0" 'winum-select-window-0-or-10
+  "1" 'winum-select-window-1
+  "2" 'winum-select-window-2
+  "3" 'winum-select-window-3
+  "4" 'winum-select-window-4
+  "5" 'winum-select-window-5
+  "6" 'winum-select-window-6
+  "ee"  'eval-last-sexp
+  ;;"u"  'universal-argument
+  "ww" 'save-buffer
+  ;; neotree
+  "t"  'neotree-toggle
+  ;; iedit编辑多区域
+  "i"  'iedit-mode 
+  ;; ag
+  "ag" 'helm-do-ag-project-root
+
+
+  "wh" 'evil-window-left
+  "wl" 'evil-window-right
+  "wk" 'evil-window-up
+  "wj" 'evil-window-down
+  "wo" 'delete-other-windows
+  "wx" 'delete-window
+  "wc" 'ace-swap-window
+  "w2" 'my-split-window-vertically
+  "w3" 'my-split-window-horizontally
+  "wa" 'evil-window-move-far-left
+  "wd" 'evil-window-move-far-right
+  "wc" 'ace-swap-window
+
+  ;file
+  "ff" 'find-file
+  "fr" 'my-counsel-recentf
+  "fd" 'counsel-recent-directory
+  "fc" 'scroll-other-window
+  "fb" 'switch-to-buffer
+  "bb" (lambda () (interactive) (switch-to-buffer nil)) ; to previous buffer
+  ;;fun jump
+  "bf" 'beginning-of-defun
+  "bu" 'backward-up-list
+  "ef" 'end-of-defun
+
+  ;;help
+  "hd" 'describe-function
+  "hf" 'find-function
+  "hk" 'describe-key
+  "hv" 'describe-variable
+
+  "uu" 'winner-undo
+  "ur" 'winner-redo
+  ;;shell
+  "sh" 'my-switch-to-shell
+  "sc" 'shell-command
+  ;; git
+  "gf" 'counsel-git
+  ;;hydra
+  "sy" 'hydra-launcher/body
+  "sg" 'hydra-git/body
+  "sw" 'hydra-window/body
+
+  "rt" 'random-healthy-color-theme
  )
 
 ;; evil-nerd-commenter注释

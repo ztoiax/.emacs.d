@@ -22,18 +22,21 @@
                 ;;exec-path-from-shell
                 ;; --- Themes ---
                 monokai-theme
-                ;; solarized-theme
+                solarized-theme
 		popwin
 		;; hippie-expand-slime
+		;;evil
+		;;evil-leader
 		iedit
 	        expand-region
 		helm-ag
 		yasnippet
-	        ;;evil
 		auto-yasnippet
 		neotree
 		use-package
-		;evil-leader
+		ace-window
+		find-file-in-project
+		wgrep
                 ) "Default packages")
 
  (setq package-selected-packages my/packages)
@@ -55,7 +58,8 @@
 ;; (exec-path-from-shell-initialize))
 
 ;; 主题
-(load-theme 'monokai t)
+;;(load-theme 'monokai t)
+(load-theme 'solarized-light-high-contrast t)
 
 ;; 开启全局 Company 补全
 (global-company-mode 1)
@@ -92,5 +96,20 @@
 
 ;; which-key
 (which-key-mode)
+
+;; wgrep
+
+;;    To save buffer automatically when wgrep-finish-edit.
+
+(setq wgrep-auto-save-buffer t)
+
+;;    You can change the default key binding to switch to wgrep.
+
+(setq wgrep-enable-key "r")
+
+;;    To apply all changes wheather or not buffer is read-only.
+
+(setq wgrep-change-readonly-file t)
+
 
 (provide 'init-package)
