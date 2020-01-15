@@ -1,8 +1,8 @@
  (when (>= emacs-major-version 24)
     (require 'package)
-    ;;(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                             ;;("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))))
-     (add-to-list 'package-archives '("melpa" . "http://elpa.emacs-china.org/melpa/") t))
+    (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                             ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))))
+    ;;(add-to-list 'package-archives '("melpa" . "http://elpa.emacs-china.org/melpa/") t))
     ;;(setq package-archives '("melpa"   . "http://mirrors.zilongshanren.com/melpa/")))
      (package-initialize) 
 
@@ -25,18 +25,25 @@
                 solarized-theme
 		popwin
 		;; hippie-expand-slime
+		;; --- evil ----
 		;;evil
 		;;evil-leader
-		iedit
-	        expand-region
+		evil-ediff
+		neotree
+		;; --- text ---
+		wgrep
 		helm-ag
+		iedit
+		;; --- other ---
+	        expand-region
 		yasnippet
 		auto-yasnippet
-		neotree
 		use-package
 		ace-window
 		find-file-in-project
-		wgrep
+		;; --- ui ---
+		rainbow-delimiters      ;;彩虹括号
+		all-the-icons           ;;图标
                 ) "Default packages")
 
  (setq package-selected-packages my/packages)
@@ -94,10 +101,16 @@
 ;; evil-nerd-commenter
 (evilnc-default-hotkeys)
 
+;; evil-neotree
+(setq-default neo-show-hidden-files t)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 ;; which-key
 (which-key-mode)
 
 ;; wgrep
+
+;; rainbow-delimiters
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;;    To save buffer automatically when wgrep-finish-edit.
 

@@ -66,10 +66,14 @@
   "uu" 'winner-undo
   "ur" 'winner-redo
   ;;"u"  'universal-argument
+  "ww" 'save-buffer
   ;; neotree
   "t"  'neotree-toggle
+  ;; iedit编辑多区域
+  "i"  'iedit-mode 
   ;; ag
   "ag" 'helm-do-ag-project-root
+
 
   ;file
   "ff" 'find-file
@@ -79,7 +83,6 @@
   "fb" 'switch-to-buffer
   "fg" 'counsel-git
   "bb" (lambda () (interactive) (switch-to-buffer nil)) ; to previous buffer
-  "ww" 'save-buffer
   ;;fun jump
   "bf" 'beginning-of-defun
   "bu" 'backward-up-list
@@ -97,13 +100,8 @@
 
   "rt" 'random-healthy-color-theme
   "ee"  'eval-last-sexp
-  ;;mode
-  "mo" 'occur-dwim
-  "mi"  'iedit-mode 
  )
 
-(define-key occur-mode-map (kbd "j") 'occur-next)
-(define-key occur-mode-map (kbd "k") 'occur-prev)
 ;; evil-nerd-commenter注释
 (define-key evil-normal-state-map (kbd "gcc") 'evilnc-comment-or-uncomment-lines)
 (define-key evil-visual-state-map (kbd "gcc") 'evilnc-comment-or-uncomment-lines)

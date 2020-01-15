@@ -1,3 +1,5 @@
+(setq-default initial-scratch-message
+              (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
 ;; mode
 (winner-mode t)
 (winum-mode t)
