@@ -1,0 +1,6 @@
+(defun emacs(name)
+  (interactive)
+  (let (d "~/.emacs.d")
+       (my "~/.emacs.d.bak")
+	(chen "~/.emacs.d.chen")
+	(pucell "~/.emacs.d.pucell")))

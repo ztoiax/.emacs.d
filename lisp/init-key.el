@@ -22,20 +22,12 @@
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
 
-;; 全局buffer缩进
-(global-set-key (kbd "C-M-z") 'indent-region-or-buffer)
-
 ;; hippie补全
 (global-set-key (kbd "s-/") 'hippie-expand)
-
-
-;; expand-region
-(global-set-key (kbd "C-=") 'er/expand-region)
 
 ;; auto-yasnippet
 (global-set-key (kbd "H-w") #'aya-create)
 (global-set-key (kbd "H-y") #'aya-expand)
-
 
 ;; evil
 (define-key evil-motion-state-map (kbd "C-u") 'evil-scroll-up)
@@ -71,7 +63,6 @@
   ;; ag
   "ag" 'helm-do-ag-project-root
 
-  ;file
   "ff" 'find-file
   "fr" 'my-counsel-recentf
   "fd" 'counsel-recent-directory
@@ -97,11 +88,23 @@
 
   "rt" 'random-healthy-color-theme
   "ee"  'eval-last-sexp
+  ;; expand-region
+  "v" 'er/expand-region
+  ;; 全局buffer缩进
+  "zz" 'indent-region-or-buffer
   ;;mode
   "mo" 'occur-dwim
   "mi"  'iedit-mode 
- )
-
+  )
+;; neotree
+(evil-define-key 'normal neotree-mode-map (kbd "d") 'neotree-dir)
+(evil-define-key 'normal neotree-mode-map (kbd "h") 'neotree-select-up-node)
+(evil-define-key 'normal neotree-mode-map (kbd "l") 'neotree-quick-look)
+(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "o") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "a") 'neotree-stretch-toggle)
+(evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
+;; occur
 (define-key occur-mode-map (kbd "j") 'occur-next)
 (define-key occur-mode-map (kbd "k") 'occur-prev)
 ;; evil-nerd-commenter注释

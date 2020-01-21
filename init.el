@@ -69,7 +69,7 @@
     ("#cc1f24" "#bb3e06" "#a67c00" "#4f6600" "#a8b84b" "#005797" "#11948b" "#c42475" "#5e65b6")))
  '(package-selected-packages
    (quote
-    (all-the-icons rainbow-delimiters evil-ediff solarized-theme wgrep find-file-in-project ace-window evil-leader company swiper counsel smartparens monokai-theme popwin iedit expand-region helm-ag yasnippet auto-yasnippet neotree)))
+    (elpy all-the-icons rainbow-delimiters evil-ediff solarized-theme wgrep find-file-in-project ace-window evil-leader company swiper counsel smartparens monokai-theme popwin iedit expand-region helm-ag yasnippet auto-yasnippet neotree)))
  '(popwin:popup-window-position (quote right))
  '(popwin:popup-window-width 70)
  '(pos-tip-background-color "#f4eedb")

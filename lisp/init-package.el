@@ -44,6 +44,10 @@
 		;; --- ui ---
 		rainbow-delimiters      ;;彩虹括号
 		all-the-icons           ;;图标
+		;; --- python ---
+		elpy
+		;;anaconda-mode 
+		;;jedi
                 ) "Default packages")
 
  (setq package-selected-packages my/packages)
@@ -124,5 +128,12 @@
 
 (setq wgrep-change-readonly-file t)
 
-
+;; --- python ---
+;;elpy
+(elpy-enable)
+;; anaconda-mode
+(add-hook 'python-mode-hook 'anaconda-mode)
+;; jedi
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
 (provide 'init-package)
